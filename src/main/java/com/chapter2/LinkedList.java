@@ -18,9 +18,10 @@ public class LinkedList {
 		Node newNode = new Node(data);
 		if (isEmpty()) {
 			head = newNode;
+		} else {
+			newNode.next = head;
+			head = newNode;
 		}
-		newNode.next = head;
-		head = newNode;
 
 		size++;
 	}
@@ -36,5 +37,14 @@ public class LinkedList {
 			head = head.next;
 			size--;
 		}
+	}
+
+	public void printList() {
+		Node currentNode = head;
+		while (currentNode != null) {
+			System.out.print(currentNode.data + "  ");
+			currentNode = currentNode.next;
+		}
+		System.out.println("\n------------------------------------");
 	}
 }
