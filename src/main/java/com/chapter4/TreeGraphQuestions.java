@@ -1,7 +1,9 @@
 package com.chapter4;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 import com.ds.tree.BinarySearchTree;
@@ -76,6 +78,10 @@ public class TreeGraphQuestions {
 		return true;
 	}
 
+	/**
+	 * 
+	 * Calculates the height of a node
+	 */
 	public int getHeight(Node node) {
 		if (node == null) {
 			return 0;
@@ -86,18 +92,32 @@ public class TreeGraphQuestions {
 		return Math.max(leftHeight, rightHeight) + 1;
 	}
 
-	public static void main(String[] args) {
-		int[] a = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 0 };
-		BinarySearchTree bst = minimalTree(new BinarySearchTree(), a, 0, a.length - 1);
-		bst.preOrderTravel(bst.root);
-		Map<Integer, LinkedList<Node>> map = nodeToList(bst.root, new HashMap<>(), 0);
-
-		for (Integer i : map.keySet()) {
-			System.out.println("Depth: " + i);
-			map.get(i).forEach(System.out::println);
-			System.out.println("__________________________________");
+	/**
+	 * 
+	 * 4.5 Given a binary tree check if it is a binary search tree	 * 
+	 */
+	public boolean isBST(Node node) {
+		if (node == null) {
+			return true;
 		}
 
+		boolean isLeftBST = isBST(node.leftChild);
+		boolean isRightBST = isBST(node.rightChild);
+		if (!isLeftBST || !isRightBST) {
+			return false;
+		}
+
+		if (node.leftChild != null && node.key < node.leftChild.key) {
+			return false;
+		}
+
+		if (node.rightChild != null && node.key <= node.rightChild.key) {
+			return false;
+		}
+
+		return true;
 	}
+
+	public static void main(String[] args) {}
 
 }
