@@ -49,6 +49,43 @@ public class TreeGraphQuestions {
 		return map;
 	}
 
+	/**
+	 * 4.4 Given a binary tree check if the tree is balanced. A balanced tree is
+	 * such that given a node the difference between two subsequent sub trees can
+	 * not be more than one
+	 * 
+	 */
+
+	public boolean isBalanced(Node node) {
+		if (node == null) {
+			return true;
+		}
+		boolean isLeftBalanced = isBalanced(node.leftChild);
+		boolean isRightBalanced = isBalanced(node.rightChild);
+
+		if (!isLeftBalanced || !isRightBalanced) {
+			return false;
+		}
+
+		int leftHeight = getHeight(node.leftChild);
+		int rightHeight = getHeight(node.rightChild);
+
+		if (Math.abs(rightHeight - leftHeight) > 1) {
+			return false;
+		}
+		return true;
+	}
+
+	public int getHeight(Node node) {
+		if (node == null) {
+			return 0;
+		}
+		int leftHeight = getHeight(node.leftChild);
+		int rightHeight = getHeight(node.rightChild);
+
+		return Math.max(leftHeight, rightHeight) + 1;
+	}
+
 	public static void main(String[] args) {
 		int[] a = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 0 };
 		BinarySearchTree bst = minimalTree(new BinarySearchTree(), a, 0, a.length - 1);
