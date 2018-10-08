@@ -220,12 +220,117 @@ public class TreeGraphQuestions {
 		return node;
 	}
 
-	public static void main(String[] args) {
-		int[] a = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 };
-		BinarySearchTree bst = minimalTree(new BinarySearchTree(), a, 0, a.length - 1);
-		Node node = getCommonAncestor(bst.root, 1, 6);
+	/**
+	 * 4.10 Check if T1 is a subtree of T1, both T1 and T2 are large trees, T1 is
+	 * significantly larger than T2
+	 * 
+	 */
 
-		System.out.println(node);
+	public static boolean isSubTree(Node node1, Node node2, Node originalNode) {
+
+		if (node1 == null && node2 == null) {
+			return true;
+		}
+		if (node1 == null ^ node2 == null) {
+			return false;
+		}
+
+		
+		boolean result = false;
+
+		if (node1.key == node2.key) {
+			result = isSubTree(node1.leftChild, node2.leftChild, originalNode) && isSubTree(node1.rightChild, node2.rightChild, originalNode);
+
+		} else {
+			result = isSubTree(node1.leftChild, originalNode, originalNode) || isSubTree(node1.rightChild, originalNode, originalNode);
+		}
+
+		System.out.println(String.format("%s is compared to %s and result is [%s]", node1, node2, result));
+		return result;
+	}
+
+	public static void main(String[] args) {
+
+		Node node1 = new Node(1, "1");
+		Node node2 = new Node(2, "2");
+		Node node3 = new Node(3, "3");
+		Node node4 = new Node(4, "4");
+		Node node5 = new Node(5, "5");
+		Node node6 = new Node(6, "6");
+		Node node7 = new Node(7, "7");
+		Node node8 = new Node(8, "8");
+		Node node9 = new Node(9, "9");
+		Node node10 = new Node(10, "10");
+		Node node11 = new Node(11, "11");
+		Node node12 = new Node(12, "12");
+		Node node13 = new Node(13, "13");
+		Node node14 = new Node(14, "14");
+		Node node15 = new Node(15, "15");
+
+		node1.leftChild = node2;
+		node1.rightChild = node3;
+
+		node2.leftChild = node4;
+		node2.rightChild = node5;
+
+		node3.leftChild = node6;
+		node3.rightChild = node7;
+
+		node4.leftChild = node8;
+		node4.rightChild = node9;
+		
+		node6.leftChild = node10;
+		node6.rightChild = node11;
+		
+		node9.leftChild = node12;
+		node9.rightChild = node13;
+		
+		node11.leftChild = node14;
+		node11.rightChild = node15;
+		
+		Node xnode1 = new Node(1, "1");
+		Node xnode2 = new Node(2, "2");
+		Node xnode3 = new Node(3, "3");
+		Node xnode4 = new Node(4, "4");
+		Node xnode5 = new Node(5, "5");
+		Node xnode6 = new Node(6, "6");
+		Node xnode7 = new Node(7, "7");
+		Node xnode8 = new Node(8, "8");
+		Node xnode9 = new Node(9, "9");
+		Node xnode10 = new Node(10, "10");
+		Node xnode11 = new Node(11, "11");
+		Node xnode12 = new Node(12, "12");
+		Node xnode13 = new Node(13, "13");
+		Node xnode14 = new Node(14, "14");
+		Node xnode15 = new Node(15, "15");
+
+		/*node1.leftChild = node2;
+		node1.rightChild = node3;
+
+		node2.leftChild = node4;
+		node2.rightChild = node5;
+
+		node3.leftChild = node6;
+		node3.rightChild = node7;
+
+		node4.leftChild = node8;
+		node4.rightChild = node9;*/
+		
+		xnode6.leftChild = xnode10;
+		xnode6.rightChild = xnode11;
+		
+				
+		xnode9.leftChild = xnode12;
+		xnode9.rightChild = xnode13;
+		
+		//xnode10.rightChild = xnode1;
+		
+		xnode11.leftChild = xnode14;
+		xnode11.rightChild = xnode15;
+		
+		
+		
+		System.out.println(isSubTree(node1, node1, node1));
 	}
 
 }
