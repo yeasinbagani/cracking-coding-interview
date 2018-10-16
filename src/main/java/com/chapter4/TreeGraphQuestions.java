@@ -236,7 +236,7 @@ public class TreeGraphQuestions {
 		}
 
 		
-		boolean result = false;
+		boolean result = false; 
 
 		if (node1.key == node2.key) {
 			result = isSubTree(node1.leftChild, node2.leftChild, originalNode) && isSubTree(node1.rightChild, node2.rightChild, originalNode);
