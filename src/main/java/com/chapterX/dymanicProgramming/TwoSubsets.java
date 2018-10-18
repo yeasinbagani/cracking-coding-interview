@@ -3,10 +3,53 @@ package com.chapterX.dymanicProgramming;
 
 /**
  * JAVA code to partition a set into two subsets 
- * such that the difference of subset sums
+ * such that the difference of subset sums is minimum
  *
  */
 public class TwoSubsets {
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
