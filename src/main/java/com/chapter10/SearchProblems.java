@@ -1,6 +1,6 @@
 package com.chapter10;
 
-public class CircularSearch {
+public class SearchProblems {
 
 	/**
 	 * 10.3 Search in rotated array
@@ -23,6 +23,7 @@ public class CircularSearch {
 	}
 
 	public static int binarySearch(int[] array, int start, int end, int num) {
+		System.out.println(String.format("Start: %s, End: %s", start, end));
 		if (start > end) {
 			return -1;
 		}
@@ -38,9 +39,30 @@ public class CircularSearch {
 		return result;
 	}
 
+	public static int sortedSearchNoSize(int[] array, Integer start, Integer end, int num) {
+		if (start > end) {
+			return -1;
+		}
+
+		
+		int index = -1;
+		if (end < array.length && array[end] == -1) {
+			end = (start + end) / 2;
+			sortedSearchNoSize(array, start, end, num);
+		} else if (num > array[end]) {
+			start = end + 1;
+			end = end * 2;
+			sortedSearchNoSize(array, start, end, num);
+		} else {
+			index = binarySearch(array, start, end, num);
+		}
+
+		return index;
+	}
+
 	public static void main(String[] args) {
 		// int[] a = {15, 16, 19, 20, 25, 1, 3, 4, 5, 7, 10, 14};
-		int[] a = { 28, 1, 3, 4, 5, 7, 10, 14, 15, 16, 19, 20, 25, 27 };
-		System.out.println(circularSearch(a, 0, a.length - 1, 10));
+		int[] a = { 1, 3, 4, 5, 7, 10, 14, 15, 16, 19, 20, 25, 27, -1, -1, -1, -1 };
+		System.out.println(sortedSearchNoSize(a, 0, 1, 10));
 	}
 }
